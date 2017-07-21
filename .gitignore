@@ -11,6 +11,7 @@ config.py
 
 # proj
 linearregression.pickle
+classifier.pickle
 
 # C extensions
 *.so
