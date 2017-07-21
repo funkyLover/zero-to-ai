@@ -47,6 +47,7 @@ clf.fit(X_train, y_train)
 
 accuracy = clf.score(X_test, y_test)
 forecast_set = clf.predict(X_lately)
+#all_set = clf.predict(X_scale)
 
 df['Forecast'] = np.nan
 print(forecast_set)
@@ -55,7 +56,7 @@ idx = 0
 for val in forecast_set:
     date = new_df.iloc[-forecast_out + idx].name
     idx += 1
-    df.loc[date] = [np.nan for _ in range(len(df.columns) - 1)] + [val - 15]
+    df.loc[date] = [np.nan for _ in range(len(df.columns) - 1)] + [val]
 
 df['Adj. Close'].plot()
 # weird! plots got closing error(about 15)
