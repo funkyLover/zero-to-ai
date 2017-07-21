@@ -9,6 +9,9 @@ __pycache__/
 # config
 config.py
 
+# proj
+linearregression.pickle
+
 # C extensions
 *.so
 

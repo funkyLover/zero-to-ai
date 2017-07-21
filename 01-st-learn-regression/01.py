@@ -9,6 +9,7 @@ from sklearn import preprocessing, cross_validation, svm
 from sklearn.linear_model import  LinearRegression
 import matplotlib.pyplot as plt
 from matplotlib import style
+import pickle
 
 import Config
 
@@ -42,8 +43,14 @@ y = np.array(df['label'])
 
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
 
-clf = LinearRegression()
-clf.fit(X_train, y_train)
+# clf = LinearRegression()
+# clf.fit(X_train, y_train)
+# # save train result
+# with open('linearregression.pickle', 'wb') as f:
+# 	pickle.dump(clf, f)
+
+pickle_in = open('linearregression.pickle', 'rb')
+clf = pickle.load(pickle_in)
 
 accuracy = clf.score(X_test, y_test)
 forecast_set = clf.predict(X_lately)
@@ -61,7 +68,7 @@ for val in forecast_set:
 df['Adj. Close'].plot()
 # weird! plots got closing error(about 15)
 # df.loc[date] = [np.nan for _ in range(len(df.columns) - 1)] + [val - 15]
-new_df['Adj. Close'].plot()
+# new_df['Adj. Close'].plot()
 df['Forecast'].plot()
 plt.legend(loc=4)
 plt.xlabel('Date')
