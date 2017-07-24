@@ -12,6 +12,7 @@ config.py
 # proj
 linearregression.pickle
 classifier.pickle
+*.csv
 
 # C extensions
 *.so
