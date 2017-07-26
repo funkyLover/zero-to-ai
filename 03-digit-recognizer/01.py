@@ -5,6 +5,8 @@ import numpy as np
 from random import sample
 import matplotlib.pyplot as plt
 from sklearn import preprocessing, neighbors, svm, multiclass, cross_validation
+from sklearn.linear_model import LogisticRegression
+from sklearn.multiclass import OneVsRestClassifier
 
 # 00: load train data
 train_data = pd.read_csv('train.csv')
@@ -43,11 +45,36 @@ def display_random(max):
 	plt.show()
 # display_random(len(images))
 
-# 02-1: classifier with svm
-clf1 = svm.LinearSVC(C=0.01)
-clf1.fit(X_train, y_train)
-print('finish train model')
+C = 0.01
+class_weight = 'balanced'
+max_iter = 20
+solver = 'liblinear'
+tol = 1e-8
+n_jobs=-1
 
-accuracy = clf1.score(X_test, y_test)
-print('finish test model')
-print(accuracy)
+# 02-1: classifier with SVM
+# clf1 = svm.LinearSVC(C=C)
+# clf1.fit(X_train, y_train)
+# print('finish train model 1')
+
+# accuracy1 = clf1.score(X_test, y_test)
+# print('finish test model 1')
+# print(accuracy1)
+
+# 02-2: classifier with Logistic Regression
+# clf2 = LogisticRegression(C=C, class_weight=class_weight, max_iter=max_iter, tol=tol, n_jobs=n_jobs)
+# clf2.fit(X_train, y_train)
+# print('finish train model 2')
+
+# accuracy2 = clf2.score(X_test, y_test)
+# print('finish test model 2')
+# print(accuracy2)
+
+# 02-3: classifier with OneVsRestClassifier
+clf3 = OneVsRestClassifier(svm.LinearSVC(random_state=0))
+clf3.fit(X_train, y_train)
+print('finish train model 3')
+
+accuracy3 = clf3.score(X_test, y_test)
+print('finish test model 3')
+print(accuracy3)
