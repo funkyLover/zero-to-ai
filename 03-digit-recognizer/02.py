@@ -1,5 +1,5 @@
 
-# plotting scores to evaluate models
+# plotting scores to evaluate models (svm.SVC)
 
 import numpy as np
 from sklearn import preprocessing
@@ -8,12 +8,12 @@ from sklearn.model_selection import validation_curve, learning_curve
 import matplotlib.pyplot as plt
 import pandas as pd
 
-train_data = pd.read_csv('train.csv')
+train_data = pd.read_csv('train_small.csv')
 print('finish load data')
 
-X = np.array(train_data.drop(['label'], 1)).astype(np.float)[:1000]
+X = np.array(train_data.drop(['label'], 1)).astype(np.float)
 X = preprocessing.scale(X)
-y = np.array(train_data['label'])[:1000]
+y = np.array(train_data['label'])
 
 # 01: select gamma
 # param_range = np.logspace(-6, -1, 5)
