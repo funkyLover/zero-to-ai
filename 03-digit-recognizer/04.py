@@ -19,7 +19,7 @@ X_predict = preprocessing.scale(X_predict)
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y, test_size=0.2)
 print('finish process data')
 
-clf = SVC(gamma=0.001, C=1)
+clf = SVC(gamma=0.001, C=12)
 # clf.fit(X_train, y_train)
 # print('finish train model')
 
@@ -32,4 +32,5 @@ y_predict = clf.predict(X_predict)
 
 test_predict = pd.DataFrame(y_predict, columns=['Label'])
 test_predict.index = test_predict.index + 1
-test_predict.to_csv('01-svc-gamma=001-C=1.csv')
+# test_predict.to_csv('01-svc-gamma=001-C=1.csv')
+test_predict.to_csv('02-svc-gamma=001-C=12.csv')
